@@ -8,6 +8,7 @@ const Home = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [defaultCityWeatherData, setDefaultCityWeatherData] = useState(null);
+  const [weatherIcon, setWeatherIcon] = useState(null); // State to store weather icon URL
   const API_KEY = key;
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,7 +29,21 @@ const Home = () => {
     }
   }, [navigate]);
 
- 
+  const fetchWeatherIcon = async (iconCode) => {
+    try {
+      const iconResponse = await fetch(
+        `http://openweathermap.org/img/wn/${iconCode}.png`
+      );
+      if (iconResponse.ok) {
+        setWeatherIcon(iconResponse.url);
+      } else {
+        throw new Error("Failed to fetch weather icon");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const fetchWeatherDataByCity = async (cityName) => {
     try {
       const response = await fetch(
@@ -38,8 +53,10 @@ const Home = () => {
         const data = await response.json();
         setWeatherData(data);
         setLoading(false);
-
         localStorage.setItem("weatherData", JSON.stringify(data));
+
+        // Fetch weather icon
+        fetchWeatherIcon(data.weather[0].icon); // Assuming weather icon code is in the response data
       } else {
         throw new Error("Failed to fetch data");
       }
@@ -126,10 +143,16 @@ const Home = () => {
     fetchCurrentUserDefaultCityWeather();
   }, [currentUser]);
 
+  useEffect(() => {
+    if (weatherData && weatherData.weather && weatherData.weather.length > 0) {
+      fetchWeatherIcon(weatherData.weather[0].icon);
+    }
+  }, [weatherData]);
+
   return (
     <>
       <div className="card">
-        <div className="search">
+      <div className="search">
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -154,19 +177,20 @@ const Home = () => {
             <>
               <h2 className="city">{`Weather in ${weatherData.name}`}</h2>
               <h1 className="temp">{`${weatherData.main.temp}°C`}</h1>
+              {weatherIcon && <img src={weatherIcon} alt="Weather Icon" />}
               <div className="details">
                 <p>{`Description: ${weatherData.weather[0].description}`}</p>
                 <p>{`Humidity: ${weatherData.main.humidity}%`}</p>
                 <p>{`Wind Speed: ${weatherData.wind.speed} m/s`}</p>
-               
+                {/* Display more weather details here */}
               </div>
             </>
           )}
         </div>
       </div>
 
-    
       <div className="card">
+        {/* Default city weather details */}
         {currentUser && (
           <>
             <h2>{`Welcome Back ${currentUser.username}`}</h2>
@@ -178,7 +202,7 @@ const Home = () => {
                   <p>{`Description: ${defaultCityWeatherData.weather[0].description}`}</p>
                   <p>{`Humidity: ${defaultCityWeatherData.main.humidity}%`}</p>
                   <p>{`Wind Speed: ${defaultCityWeatherData.wind.speed} m/s`}</p>
-                  
+                  {/* Display more weather details here */}
                 </div>
               </>
             )}
