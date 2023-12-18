@@ -513,3 +513,73 @@ h1.temp {
 .logo_name{
   margin-right : 10px;
 }
+
+.about-us {
+  /* Add overall styles for the About Us section */
+  /* Example: padding, margin, etc. */
+  margin-left: 300px;
+}
+
+.developer-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left:10px;
+  /* Add more styles for the container of developer cards */
+  /* Example: padding, margin, etc. */
+}
+
+.developer-card {
+  width: calc(33.33% - 20px); /* 3 cards per row with margin between */
+  margin-bottom: 20px;
+  /* Add more styles for each developer card */
+  /* Example: padding, margin, border, etc. */
+}
+
+/* The existing CSS styles remain the same */
+
+/* Add media queries for responsiveness */
+
+/* Tablet (768px) */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100px;
+    /* Adjust other styles for smaller screens */
+  }
+
+  /* Adjust other specific styles for tablet screens */
+  .about-us {
+    margin-left: 20px;
+  }
+
+  .developer-cards {
+    margin-left: 20px;
+  }
+
+  .developer-card {
+    width: calc(50% - 20px);
+  }
+}
+
+/* Mobile (420px) */
+@media (max-width: 420px) {
+  .sidebar {
+    width: 75px;
+    /* Adjust other styles for even smaller screens */
+  }
+
+  /* Adjust other specific styles for mobile screens */
+  .about-us {
+    margin-left: 10px;
+  }
+
+  .developer-cards {
+    margin-left: 10px;
+  }
+
+  .developer-card {
+    width: 100%;
+  }
+}
+
+

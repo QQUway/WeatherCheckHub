@@ -59,11 +59,19 @@ const Sidebar = () => {
           <span className="tooltip">Notes</span>
         </li>
 
+        <li>
+          <Link to="/about">
+            <i className="bx bx-chat"></i>
+            <span className="links_name">About</span>
+          </Link>
+          <span className="tooltip">About</span>
+        </li>
+
         {isLoggedOff && (
           <li key="login">
             <Link to="/">
               <i className="bx bx-user"></i>
-              <span className="links_name">User</span>
+              <span className="links_name">Login</span>
             </Link>
             <span className="tooltip">Login</span>
           </li>
