@@ -20,7 +20,7 @@ const Notes = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
     if (!user) {
-      navigate("/"); // Redirect to login page if user is not logged in
+      navigate("/"); 
     }
   }, [navigate]);
 
@@ -40,7 +40,6 @@ const Notes = () => {
     let suggestionsArray = [];
     
     switch (Math.floor(weatherCode / 100)) {
-      // ... (Previous cases remain unchanged)
   
       case 2: // Group for Thunderstorm
         suggestionsArray = [
@@ -185,10 +184,10 @@ const Notes = () => {
         break;
     }
   
-    // Shuffle the suggestions array
+  
     suggestionsArray = suggestionsArray.sort(() => Math.random() - 0.5);
   
-    // Return the first 5 suggestions
+   
     return suggestionsArray.slice(0, 5);
   };
   
@@ -219,13 +218,12 @@ const Notes = () => {
   };
 
   if (!currentUser) {
-    return null; // or display a loading indicator, or a message before redirecting
+    return null; 
   }
 
   return (
     <div className="notes-container">
       <div className="cards-container" style={{ display: "flex"}}>
-        {/* Task List Card */}
         <div className="card" key="taskCard">
           <h2>{currentUser.username}'s Task List</h2>
           <input
@@ -249,7 +247,7 @@ const Notes = () => {
           </ul>
         </div>
 
-        {/* Weather Card */}
+
         <div className="card" key="weatherCard">
           <h2>Weather Suggestions</h2>
           {currentWeather ? (

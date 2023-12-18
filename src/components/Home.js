@@ -28,7 +28,7 @@ const Home = () => {
     }
   }, [navigate]);
 
-  // Fetch weather data by city
+ 
   const fetchWeatherDataByCity = async (cityName) => {
     try {
       const response = await fetch(
@@ -39,7 +39,6 @@ const Home = () => {
         setWeatherData(data);
         setLoading(false);
 
-        // Store weather data in local storage
         localStorage.setItem("weatherData", JSON.stringify(data));
       } else {
         throw new Error("Failed to fetch data");
@@ -83,7 +82,7 @@ const Home = () => {
     }
   };
 
-  // Handle search functionality
+ 
   const handleSearch = (e) => {
     e.preventDefault();
     if (city !== "") {
@@ -92,9 +91,9 @@ const Home = () => {
     }
   };
 
-  // Handle logout functionality
+ 
   const handleLogout = () => {
-    navigate("/"); // Redirect to login page after logout
+    navigate("/"); 
   };
 
   
@@ -122,7 +121,7 @@ const Home = () => {
     fetchCurrentUserDefaultCityWeather();
   }, [currentUser]);
 
-  // Update default city weather when currentUser changes or component mounts
+  
   useEffect(() => {
     fetchCurrentUserDefaultCityWeather();
   }, [currentUser]);
@@ -159,14 +158,14 @@ const Home = () => {
                 <p>{`Description: ${weatherData.weather[0].description}`}</p>
                 <p>{`Humidity: ${weatherData.main.humidity}%`}</p>
                 <p>{`Wind Speed: ${weatherData.wind.speed} m/s`}</p>
-                {/* You can display more weather details here */}
+               
               </div>
             </>
           )}
         </div>
       </div>
 
-      {/* Second card for the current user's default city weather */}
+    
       <div className="card">
         {currentUser && (
           <>
@@ -179,7 +178,7 @@ const Home = () => {
                   <p>{`Description: ${defaultCityWeatherData.weather[0].description}`}</p>
                   <p>{`Humidity: ${defaultCityWeatherData.main.humidity}%`}</p>
                   <p>{`Wind Speed: ${defaultCityWeatherData.wind.speed} m/s`}</p>
-                  {/* You can display more weather details here */}
+                  
                 </div>
               </>
             )}

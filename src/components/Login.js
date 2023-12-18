@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null); // State to handle error message
+  const [error, setError] = useState(null); 
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
@@ -61,7 +61,7 @@ const Login = () => {
           </form>
           <div>
             <p>Don't have an account?</p>
-            <Link to="/register">Register</Link> {/* Link to the register page */}
+            <Link to="/register">Register</Link> 
           </div>
       </div>
 
