@@ -45,6 +45,7 @@ const AboutUs = () => {
     
     <div className="about-us">
       <h2>Our Team</h2>
+      <div classname = "card">
       <div className="developer-cards">
         {developers.map((developer) => (
           <div key={developer.id} className="developer-card">
@@ -54,7 +55,8 @@ const AboutUs = () => {
           </div>
         ))}
       </div>
-
+      </div>
+      
       <div className="card">
       <div className="why-we-created">
         <h2>Why We Created This Website</h2>
