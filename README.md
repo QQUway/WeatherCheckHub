@@ -7,3 +7,4 @@ This React App is Developed by :
 - Dimas Bagus Nandito () (UI & UX)
 - Muhammad Fabiansyah Abubakar () (UI & UX)
   
+Due to time limitations, we havent been able to implement prisma backend with the js
