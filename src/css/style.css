@@ -33,7 +33,7 @@
 }
 
 .sidebar .logo-details {
-  height: 60px;
+  height: 100px;
   display: flex;
   align-items: center;
   position: relative;
@@ -506,4 +506,10 @@ h1.temp {
 .input-container input[type="text"]:focus,
 .input-container input[type="password"]:focus {
   border-bottom: 2px solid #000; /* Change the focus color as needed */
+}
+
+/* CSS for the Sidebar component */
+
+.logo_name{
+  margin-right : 10px;
 }

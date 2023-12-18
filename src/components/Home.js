@@ -14,6 +14,7 @@ const Home = () => {
   const location = useLocation();
   const [error, setError] = useState(null);
   const currentUser = location.state?.user;
+  const [currentBackground, setCurrentBackground] = useState(null);
 
   const isAuthenticated = () => {
     return localStorage.getItem("currentUser") !== null;
@@ -55,6 +56,11 @@ const Home = () => {
         setLoading(false);
         localStorage.setItem("weatherData", JSON.stringify(data));
 
+        // Set background image based on weather
+        setCurrentBackground(
+          `url('https://source.unsplash.com/1600x900/?${data.name}+city')`
+        );
+
         // Fetch weather icon
         fetchWeatherIcon(data.weather[0].icon); // Assuming weather icon code is in the response data
       } else {
@@ -66,33 +72,31 @@ const Home = () => {
     }
   };
 
-  const getCurrentLocationWeather = () => {
+  const getCurrentLocationWeather = async () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
+      try {
+        navigator.geolocation.getCurrentPosition(async (position) => {
           const { latitude, longitude } = position.coords;
-          try {
-            const response = await fetch(
-              `${base}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`,
-            );
-            if (response.ok) {
-              const data = await response.json();
-              setWeatherData(data);
-              setLoading(false);
-              localStorage.setItem("weatherData", JSON.stringify(data));
-            } else {
-              throw new Error("Failed to fetch data");
-            }
-          } catch (error) {
-            console.error(error);
+          const response = await fetch(
+            `${base}weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            setWeatherData(data);
             setLoading(false);
+            localStorage.setItem("weatherData", JSON.stringify(data));
+
+            // Fetch weather icon
+            fetchWeatherIcon(data.weather[0].icon);
+          } else {
+            throw new Error("Failed to fetch data");
           }
-        },
-        (error) => {
-          
-          setLoading(false);
-        },
-      );
+        });
+      } catch (error) {
+        console.error(error);
+        setLoading(false);
+      }
     } else {
       console.error("Geolocation not available");
       setLoading(false);
@@ -134,20 +138,27 @@ const Home = () => {
   };
 
   useEffect(() => {
+    // Fetch current location weather and set as initial data
     getCurrentLocationWeather();
-    fetchCurrentUserDefaultCityWeather();
-  }, [currentUser]);
+  }, []);
 
-  
-  useEffect(() => {
-    fetchCurrentUserDefaultCityWeather();
-  }, [currentUser]);
+
+
+ 
 
   useEffect(() => {
-    if (weatherData && weatherData.weather && weatherData.weather.length > 0) {
-      fetchWeatherIcon(weatherData.weather[0].icon);
+    // Update background when weatherData changes
+    if (weatherData && weatherData.name) {
+      setCurrentBackground(`url('https://source.unsplash.com/1600x900/?${weatherData.name}')`);
     }
   }, [weatherData]);
+
+  // Update background when currentBackground changes
+  useEffect(() => {
+    if (currentBackground) {
+      document.body.style.backgroundImage = currentBackground;
+    }
+  }, [currentBackground]);
 
   return (
     <>
