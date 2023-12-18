@@ -1,9 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import "./css/style.css";
+import "./css/Notes.css";
+
 import "boxicons";
 import Home from "./components/Home";
 import Login from "./components/Login";
+import Notes from "./components/Notes";
+import Register from "./components/Register"
 
 export default function App() {
   return (
@@ -12,6 +16,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="home" element={<Home />} />
+        <Route path="notes" element={<Notes />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </div>
   );

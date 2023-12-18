@@ -1,5 +1,23 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,useNavigate} from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 export default function Sidebar() {
+
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("currentUser");
+    navigate("/"); // Redirect to login page after logout
+  };
+
+  const isAuthenticated = () => {
+    return localStorage.getItem("currentUser") !== null;
+  };
+
+  const isLoggedIn = isAuthenticated();
+  const isLoggedOff =! isAuthenticated();
   return (
     <>
       <div class="sidebar">
@@ -24,13 +42,7 @@ export default function Sidebar() {
             </Link>
             <span class="tooltip">Weather</span>
           </li>
-          <li>
-            <Link to="/">
-              <i class="bx bx-user"></i>
-              <span class="links_name">User</span>
-            </Link>
-            <span class="tooltip">User</span>
-          </li>
+
           <li>
             <Link to="/notes">
               <i class="bx bx-chat"></i>
@@ -38,8 +50,30 @@ export default function Sidebar() {
             </Link>
             <span class="tooltip">Notes</span>
           </li>
+
+          {isLoggedOff && (
+          <li>
+            <Link to="/">
+              <i class="bx bx-user"></i>
+              <span class="links_name">User</span>
+            </Link>
+            <span class="tooltip">Login</span>
+          </li>)}
+
+          {isLoggedIn && (
+          <li onClick={handleLogout}>
+            <Link to="/">
+            
+              <i class="bx bx-log-out"></i>
+              <span class="links_name">Logout</span>
+            
+            </Link>
+            <span class="tooltip">Logout</span>
+          </li>
+          )}
         </ul>
       </div>
+      
     </>
   );
 }

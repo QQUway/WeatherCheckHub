@@ -152,6 +152,8 @@
   color: #fff;
 }
 
+
+
 .sidebar.open .bx-search:hover {
   background: #1d1b31;
   color: #fff;
@@ -483,4 +485,25 @@ h1.temp {
   .card {
     margin-left: 90px;
   }
+}
+
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-container input[type="text"],
+.input-container input[type="password"] {
+  font-size: 20px;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 5px 0;
+  background-color: transparent;
+  outline: none;
+}
+
+.input-container input[type="text"]:focus,
+.input-container input[type="password"]:focus {
+  border-bottom: 2px solid #000; /* Change the focus color as needed */
 }

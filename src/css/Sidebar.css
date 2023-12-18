@@ -1,0 +1,19 @@
+/* Sidebar.css */
+
+.sidebar {
+    /* Your existing sidebar styles */
+    transition: width 0.3s ease;
+    /* Set default width or initial state styles */
+    width: 80px; /* Change this to your desired default width */
+  }
+  
+  /* Define styles for the expanded sidebar */
+  .sidebar.expanded {
+    width: 250px; /* Change this to your desired expanded width */
+  }
+  
+  /* Other styles for the toggle button or animation */
+  .expand-button {
+    /* Style your toggle button */
+  }
+  

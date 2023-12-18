@@ -7,10 +7,26 @@ const Home = () => {
   const [city, setCity] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [defaultCityWeatherData, setDefaultCityWeatherData] = useState(null);
   const API_KEY = key;
   const navigate = useNavigate();
   const location = useLocation();
-  const [defaultCityWeatherData, setDefaultCityWeatherData] = useState(null);
+  const [error, setError] = useState(null);
+  const currentUser = location.state?.user;
+
+  const isAuthenticated = () => {
+    return localStorage.getItem("currentUser") !== null;
+  };
+
+  
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate("/");
+      setError("Unauthorized Access");
+    } else {
+      fetchCurrentUserDefaultCityWeather();
+    }
+  }, [navigate]);
 
   // Fetch weather data by city
   const fetchWeatherDataByCity = async (cityName) => {
@@ -22,6 +38,9 @@ const Home = () => {
         const data = await response.json();
         setWeatherData(data);
         setLoading(false);
+
+        // Store weather data in local storage
+        localStorage.setItem("weatherData", JSON.stringify(data));
       } else {
         throw new Error("Failed to fetch data");
       }
@@ -44,6 +63,7 @@ const Home = () => {
               const data = await response.json();
               setWeatherData(data);
               setLoading(false);
+              localStorage.setItem("weatherData", JSON.stringify(data));
             } else {
               throw new Error("Failed to fetch data");
             }
@@ -53,7 +73,7 @@ const Home = () => {
           }
         },
         (error) => {
-          console.error(error);
+          
           setLoading(false);
         },
       );
@@ -77,10 +97,8 @@ const Home = () => {
     navigate("/"); // Redirect to login page after logout
   };
 
-  // Get user information from location state passed by Login component
-  const currentUser = location.state?.user;
+  
 
-  // Fetch default city weather for the logged-in user
   const fetchCurrentUserDefaultCityWeather = async () => {
     if (currentUser) {
       try {
@@ -89,7 +107,7 @@ const Home = () => {
         );
         if (response.ok) {
           const data = await response.json();
-          setDefaultCityWeatherData(data); // Set weather data for the default city
+          setDefaultCityWeatherData(data);
         } else {
           throw new Error("Failed to fetch default city data");
         }
@@ -100,14 +118,14 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getCurrentLocationWeather(); // Fetch current location weather on component mount
-    fetchCurrentUserDefaultCityWeather(); // Fetch current user's default city weather
-  }, [currentUser]); // Run useEffect when currentUser changes
+    getCurrentLocationWeather();
+    fetchCurrentUserDefaultCityWeather();
+  }, [currentUser]);
 
+  // Update default city weather when currentUser changes or component mounts
   useEffect(() => {
-    getCurrentLocationWeather(); // Fetch current location weather on component mount
-    fetchCurrentUserDefaultCityWeather(); // Fetch current user's default city weather
-  }, []);
+    fetchCurrentUserDefaultCityWeather();
+  }, [currentUser]);
 
   return (
     <>
