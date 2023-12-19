@@ -398,6 +398,8 @@ h1.temp {
   box-shadow: 5px 5px 5px #00000056;
 }
 
+
+
 .searchbar:hover {
   transform: scale(1.07);
 }
@@ -518,6 +520,8 @@ h1.temp {
   /* Add overall styles for the About Us section */
   /* Example: padding, margin, etc. */
   margin-left: 300px;
+  margin-right: 300px;
+  justify-content: center;
 }
 
 .developer-cards {
@@ -550,10 +554,12 @@ h1.temp {
   /* Adjust other specific styles for tablet screens */
   .about-us {
     margin-left: 20px;
+    margin-right: 20px;
   }
 
   .developer-cards {
     margin-left: 20px;
+    margin-right: 20px;
   }
 
   .developer-card {
@@ -571,10 +577,12 @@ h1.temp {
   /* Adjust other specific styles for mobile screens */
   .about-us {
     margin-left: 10px;
+    margin-right: 10px;
   }
 
   .developer-cards {
     margin-left: 10px;
+    margin-right: 10px;
   }
 
   .developer-card {
@@ -583,3 +591,36 @@ h1.temp {
 }
 
 
+
+/* Add this CSS in your global or component stylesheet */
+.developer-card {
+  /* Add your existing styles for the developer card */
+  /* ... */
+}
+
+.photo-container {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%; /* To create a rounded/square border */
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crop the image to cover the container */
+}
+
+.card1:hover {
+  box-shadow: 5px 5px 5px #00000056;
+}
+
+.card1 {
+  background: #1d1b31d0;
+  color: whitesmoke;
+  padding: 2em;
+  border-radius: 30px;
+  margin-right : 100px;
+
+  margin: 1em;
+}
