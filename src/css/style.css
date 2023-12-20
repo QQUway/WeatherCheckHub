@@ -328,6 +328,15 @@ body {
   margin: 1em;
 }
 
+.aboutcard {
+  background: #1d1b31d0;
+  color: whitesmoke;
+  padding: 2em;
+  border-radius: 30px;
+  width: 100%;
+  margin: 1em;
+}
+
 .search {
   display: flex;
   align-items: center;
@@ -529,74 +538,22 @@ h1.temp {
   flex-wrap: wrap;
   justify-content: center;
   margin-left:10px;
-  /* Add more styles for the container of developer cards */
-  /* Example: padding, margin, etc. */
+}
+
+.paddingabout{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left:10px;
+  padding: 10px;
 }
 
 .developer-card {
   width: calc(33.33% - 20px); /* 3 cards per row with margin between */
   margin-bottom: 20px;
-  /* Add more styles for each developer card */
-  /* Example: padding, margin, border, etc. */
+
 }
 
-/* The existing CSS styles remain the same */
-
-/* Add media queries for responsiveness */
-
-/* Tablet (768px) */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 100px;
-    /* Adjust other styles for smaller screens */
-  }
-
-  /* Adjust other specific styles for tablet screens */
-  .about-us {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .developer-cards {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-
-  .developer-card {
-    width: calc(50% - 20px);
-  }
-}
-
-/* Mobile (420px) */
-@media (max-width: 420px) {
-  .sidebar {
-    width: 75px;
-    /* Adjust other styles for even smaller screens */
-  }
-
-  /* Adjust other specific styles for mobile screens */
-  .about-us {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
-  .developer-cards {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
-  .developer-card {
-    width: 100%;
-  }
-}
-
-
-
-/* Add this CSS in your global or component stylesheet */
-.developer-card {
-  /* Add your existing styles for the developer card */
-  /* ... */
-}
 
 .photo-container {
   width: 150px;
@@ -611,11 +568,11 @@ h1.temp {
   object-fit: cover; /* Crop the image to cover the container */
 }
 
-.card1:hover {
+.aboutcard:hover {
   box-shadow: 5px 5px 5px #00000056;
 }
 
-.card1 {
+.aboutcard {
   background: #1d1b31d0;
   color: whitesmoke;
   padding: 2em;
@@ -623,4 +580,160 @@ h1.temp {
   margin-right : 100px;
 
   margin: 1em;
+}
+
+@media (max-width: 1280px) {
+  
+  
+
+  .margin{
+    margin-top : 0px;
+    margin-left : 20px;
+    padding : 30px;
+  }
+  
+  .aboutcard{
+    margin-left:30px;
+    padding :50px;
+  }
+
+  .about-us {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .developer-cards {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .developer-card {
+    width : calc(50% - 20px);
+    height: calc(50% - 20px);
+  }
+
+
+  .photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop the image to cover the container */
+  }
+
+  .photo-container{
+    width: 100px;
+    height: 100px;
+  }
+  .developer-card h1{
+    font-size : 80%;
+  }
+  .developer-card h2{
+    font-size :80%;
+  }
+  .developer-card h3{
+    font-size : 80%
+  }
+  .developer-card p{
+    font-size : 100%
+  }
+  .why-we-created h2{
+    font-size : 100%
+  }
+  .why-we-created p{
+    font-size : 100%
+  }
+}
+
+@media (max-width: 810px) {
+  
+  .card{
+    margin-top: 50px;
+    margin-left:84px;
+    padding :20px;
+    width : 75%;
+    height: 450px;
+  }
+
+  .search input{
+    width :100%;
+    height: 100%;
+  }
+
+  .search button{
+    width : 50%;
+    height: 50%;
+  }
+
+  .margin{
+    margin-top : 0px;
+    margin-left : 0px;
+    padding : 0px;
+  }
+  .weathermargin{
+    margin-top : 300px;
+    margin-left : 0px;
+    padding : 0px;
+  }
+  .aboutcard{
+    margin-left:77px;
+    padding :10px;
+  }
+
+  .about-us {
+    margin-left: 0px;
+    margin-right: 77px;
+  }
+
+  .developer-cards {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .developer-card {
+    width : calc(50% - 20px);
+    height: calc(50% - 20px);
+  }
+
+
+  .photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crop the image to cover the container */
+  }
+
+  .photo-container{
+    width: 40px;
+    height: 40px;
+  }
+
+  .developer-cards h1{
+    font-size : 50%;
+  }
+  .developer-cards h2{
+    font-size :50%;
+  }
+  .developer-cards h3{
+    font-size : 50%;
+  }
+
+  .cards h1{
+    font-size : 50%;
+  }
+  .cards h2{
+    font-size :50%;
+  }
+  .cards h2.city{
+    font-size :30%;
+  }
+  .cards h3{
+    font-size : 50%;
+  }
+
+  .why-we-created h2{
+    font-size : 50%
+  }
+  .why-we-created p{
+    font-size : 50%
+  }
+
+
 }

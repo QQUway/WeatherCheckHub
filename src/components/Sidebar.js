@@ -61,7 +61,7 @@ const Sidebar = () => {
 
         <li>
           <Link to="/about">
-            <i className="bx bx-chat"></i>
+            <i className="bx bx-group"></i>
             <span className="links_name">About</span>
           </Link>
           <span className="tooltip">About</span>

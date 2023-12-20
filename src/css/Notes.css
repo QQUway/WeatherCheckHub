@@ -5,12 +5,7 @@
     text-align: center;
   }
   
-  .devcards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
+  
   
   body {
     display: flex;
@@ -37,11 +32,27 @@
     .card {
       flex-basis: 60%; /* Two cards per row on even smaller screens */
     }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
   }
   
   @media (max-width: 480px) {
     .card {
       flex-basis: 100%; /* Single card per row on very small screens */
+    }
+    .notes-container{
+      margin-top: 200px;
+    }
+    .notes-container p{
+      font-size: 75%;
+    }
+    .notes-container ul{
+      font-size: 75%;
     }
   }
   

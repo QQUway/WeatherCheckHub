@@ -162,6 +162,7 @@ const Home = () => {
 
   return (
     <>
+      <div className="weathermargin">
       <div className="card">
       <div className="search">
           <form
@@ -219,6 +220,7 @@ const Home = () => {
             )}
           </>
         )}
+      </div>
       </div>
     </>
   );

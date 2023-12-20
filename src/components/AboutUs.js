@@ -48,9 +48,9 @@ const AboutUs = () => {
   ];
 
   return (
-    
+    <div className="margin">
     <div className="about-us">
-      <div className="card1">
+      <div className="aboutcard">
       <h2>Our Team</h2>
         <div className="developer-cards">
           {developers.map((developer) => (
@@ -65,7 +65,9 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="card1">
+            
+      <div className="aboutcard">
+      <div className="paddingabout">
       <div className="why-we-created">
         <h2>Why We Created This Website</h2>
         <p>
@@ -76,6 +78,8 @@ const AboutUs = () => {
         </p>
       </div>
       </div>
+    </div>
+    </div>
     </div>
     
   );
